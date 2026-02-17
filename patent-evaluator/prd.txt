@@ -1,0 +1,247 @@
+Below is a concise PRD for your patent‑strength evaluation app, aligned to the layout and options shown in the screenshot, and centered on the idea: “user enters a patent number → app calculates strength and surfaces portfolio intelligence.”  
+
+***
+
+## 1. Product overview
+
+The product is a web application that evaluates the **strength** of an individual patent and its surrounding portfolio using standardized patent‑quality indicators (citations, family size, claim scope, prior‑art density, litigation/invalidity risk, etc.). Users input a patent number, then get an AI‑generated strength score, risk alerts, and strategic recommendations in a command‑center style dashboard similar to the provided layout. [xlscout](https://xlscout.ai/all-you-need-to-know-about-patent-strength/)
+
+***
+
+## 2. Goals and non‑goals
+
+### 2.1 Goals
+
+- Enable IP teams, startups, and investors to quickly assess if a patent is strong, average, or weak for enforcement, licensing, or investment decisions. [patentest](https://patentest.com/4-effective-methods-for-patent-evaluation/)
+- Provide a portfolio‑level view that aggregates scores into “workstreams” (e.g., technology themes, product lines, clients) and tracks progress of evaluation activities over time. [patentskart](https://patentskart.com/ip-analytics-dynamic-dashboard/)
+- Surface actionable insights such as risky patents (high invalidity exposure), high‑value patents (strong citations and claim scope), and white‑space opportunities. [sciencedirect](https://www.sciencedirect.com/science/article/pii/S1751157723000317)
+
+### 2.2 Non‑goals (v1)
+
+- No full‑fledged prior‑art search UI; use external patent databases via API for raw data.  
+- No legal opinion generation or replacement for attorney work; outputs are decision support only.  
+- No full financial valuation model beyond simple indicators (e.g., licensing potential score).  
+
+***
+
+## 3. Primary user personas
+
+1. **Corporate IP manager** – manages a portfolio, wants a live dashboard of patent strength, risks, and evaluation workstreams. [deepip](https://www.deepip.ai/products/patent-portfolio-intelligence)
+2. **Startup founder / CTO** – owns a small portfolio, wants to know which patents to maintain, license, or prune. [deepip](https://www.deepip.ai/blog/ai-patent-portfolio-management)
+3. **Investor / M&A analyst** – evaluates a target’s patents quickly to inform due diligence and deal pricing. [xray.greyb](https://xray.greyb.com/intellectual-property/patent-scoring-and-rating)
+
+***
+
+## 4. High‑level user flows
+
+### 4.1 Add and evaluate a single patent
+
+1. User clicks “New Evaluation” (top‑right).  
+2. Enters patent number and (optionally) jurisdiction, assignee, technology tag.  
+3. System fetches bibliographic data, citations, family members, legal status, and litigation data via integrated patent APIs. [clarivate](https://clarivate.com/intellectual-property/derwent/patent-analytics/)
+4. System runs scoring engine to compute: Strength Score (0–100), Risk Level, and Value at Stake.  
+5. Dashboard updates:  
+   - Command Center cards (Active patents count, Risk alerts, Value at stake, Confidence score).  
+   - Workstream progress bars and Coverage Map metrics.  
+   - Recent Intelligence feed with new alerts related to this patent.  
+
+### 4.2 Portfolio view and monitoring
+
+1. User selects portfolio (e.g., “Photonics”, “Biopolymer claims”) from **Active workstreams**.  
+2. Sees progress (percentage of patents evaluated), average strength score, and current stage (Drafting, In review, Negotiation).  
+3. Uses Coverage Map to view balance across technologies, materials, geographies, and storage/energy domains, plus whitespace density and opposition heat. [signicent](https://signicent.com/patent-dashboard/)
+4. Uses Recent Intelligence to review daily updates: new citations, competitor filings, grant/office‑action events. [deepip](https://www.deepip.ai/blog/ai-patent-portfolio-management)
+
+***
+
+## 5. Key features mapped to the layout
+
+### 5.1 Header and global actions
+
+- **Application title and tagline**  
+  - “Golden lens for patent strategy” or similar brand line emphasising AI‑ranked patent evidence and portfolio intelligence. [deepip](https://www.deepip.ai/products/patent-portfolio-intelligence)
+- **Global actions (top‑right)**  
+  - “New Evaluation”: opens modal to enter patent number(s).  
+  - “Schedule Review”: create a review session (e.g., quarterly review) linking selected workstreams and patents.  
+
+### 5.2 Left navigation (modules)
+
+1. **Command Center**  
+   - Default landing page; shows high‑level metrics and AI focus panels.  
+2. **Patent Vault**  
+   - Master list of all imported patents, filters (jurisdiction, assignee, tech area, score range, legal status). [signicent](https://signicent.com/patview-patent-dashboard/)
+3. **Risk Signals**  
+   - Dedicated area for risk‑oriented views (e.g., invalidity risk, litigation probability, opposition heat). [xlscout](https://xlscout.ai/assessing-patent-strength-with-ai-patent-invalidity-search/)
+4. **Research Pulse**  
+   - Trends in filings, citation networks, technology clusters, emerging competitors. [sciencedirect](https://www.sciencedirect.com/science/article/pii/S1751157723000317)
+5. **Client Spaces**  
+   - Isolated workspaces for law firms or consultants to manage portfolios per client.  
+
+Bottom‑left callout: **Weekly Insight** card summarizing high‑value trends (“8 high‑value filings are trending in quantum networking – View Brief”). [patentskart](https://patentskart.com/ip-analytics-dynamic-dashboard/)
+
+### 5.3 Priority lane – “Global filings sprint”
+
+A high‑attention strip at the top of the main area summarizing current evaluation sprint:
+
+- **Description**: “X filings flagged for accelerated prosecution with above‑average grant odds.” [patsnap](https://www.patsnap.com/resources/blog/articles/patent-quality-assessment-guide/)
+- **Metrics cards**:  
+  - **Active patents** – count of patents currently under evaluation plus delta vs last week.  
+  - **Risk alerts** – number of patents with high invalidity risk, FTO issues, or legal events; highlight critical ones. [greyb](https://greyb.com/blog/patent-strength-check-for-litigation/)
+  - **Value at stake** – estimated financial value exposed (e.g., based on market method or income proxies). [patentest](https://patentest.com/4-effective-methods-for-patent-evaluation/)
+  - **Confidence score (%)** – AI confidence in the strength assessment based on data completeness and model certainty. [xlscout](https://xlscout.ai/assessing-patent-strength-with-ai-patent-invalidity-search/)
+
+### 5.4 Active workstreams section
+
+Each workstream behaves like a **project lane** for a subset of patents:
+
+- **Workstream card fields**:  
+  - Workstream name (e.g., “Photonics portfolio”, “Biopolymer claims”, “Grid storage strategy”).  
+  - Progress bar (percentage of patents evaluated with full strength score).  
+  - Stage chip (Drafting, In review, Negotiation, Monitoring).  
+- **Behaviors**:  
+  - Click to open workstream detail view: list of patents with scores, risks, and recommendations.  
+  - “View all” link on the section header to manage all workstreams, create new ones, or assign patents.  
+
+### 5.5 AI Focus – Coverage map panel (right side, top)
+
+Panel focused on portfolio balance and gaps:
+
+- **Title**: “Coverage map”.  
+- **Description**: “Balanced across communications, materials, and energy storage” or similar segment breakdown.  
+- **Metrics**:  
+  - Signal strength (e.g., 0–100) – how strong the portfolio is relative to peers in targeted domains, combining strength and volume. [xray.greyb](https://xray.greyb.com/intellectual-property/patent-scoring-and-rating)
+  - Whitespace density (%) – share of technical space with low coverage by own portfolio but high external activity. [signicent](https://signicent.com/patent-dashboard/)
+  - Opposition heat (Low/Medium/High) – intensity of third‑party threats, oppositions, or conflicting prior art. [greyb](https://greyb.com/blog/patent-strength-check-for-litigation/)
+- **Primary CTA**: “Open Heatmap” – launches interactive visualization of technology vs geography vs strength (not necessarily in v1 but planned).  
+
+### 5.6 Recent intelligence panel (right side, bottom)
+
+Stream of recent events tied to patents in the system:
+
+- **Data sources**: citation updates, new family members, office actions, grants, litigations, competitor applications. [clarivate](https://clarivate.com/intellectual-property/derwent/patent-analytics/)
+- **Event types (examples)**:  
+  - New priority citation linked to a core patent.  
+  - Competitor shift – spike in filings by a key competitor in a tracked IPC class.  
+  - Grant velocity – changes in average prosecution time for a jurisdiction / tech area.  
+- **Interactions**:  
+  - Clicking an event opens the related patent or workstream, with contextual explanation of impact on strength score.  
+
+***
+
+## 6. Patent‑strength scoring model (functional requirements)
+
+The scoring engine is central; it must use a combination of known patent‑quality indicators. [xlscout](https://xlscout.ai/all-you-need-to-know-about-patent-strength/)
+
+### 6.1 Input data
+
+- Bibliographic data: filing date, priority date, jurisdictions, assignee, inventors, IPC/CPC codes. [sciencedirect](https://www.sciencedirect.com/science/article/pii/S1751157723000317)
+- Citation data: backward and forward citations, non‑patent literature references. [patsnap](https://www.patsnap.com/resources/blog/articles/patent-quality-assessment-guide/)
+- Claim metrics: number of independent and dependent claims, length, and estimated breadth. [patsnap](https://www.patsnap.com/resources/blog/articles/patent-quality-assessment-guide/)
+- Family information: family size, geographic spread, continuation/divisional structure. [xray.greyb](https://xray.greyb.com/intellectual-property/patent-scoring-and-rating)
+- Legal status and events: grants, rejections, oppositions, litigation records, maintenance/renewal. [xlscout](https://xlscout.ai/assessing-patent-strength-with-ai-patent-invalidity-search/)
+- Technology and market context (optional in v1): tech trend score, assignee strength, market growth proxies. [cimphony](https://www.cimphony.ai/insights/what-are-the-10-ai-tools-to-streamline-ip-portfolio-management)
+
+### 6.2 Core strength dimensions
+
+For each patent, derive subscores (0–100) and composite Strength Score:
+
+1. **Novelty & non‑obviousness** – density and closeness of prior art, missed prior patents, and distinctive claim elements. [law.berkeley](https://www.law.berkeley.edu/files/wright.pdf)
+2. **Citation power** – forward citation count, quality of citing assignees, and citation network centrality. [xlscout](https://xlscout.ai/all-you-need-to-know-about-patent-strength/)
+3. **Claim robustness** – breadth vs clarity, number of independent claims, extent of narrowing amendments in prosecution history. [greyb](https://greyb.com/blog/patent-strength-check-for-litigation/)
+4. **Family and coverage** – number of jurisdictions, alignment with high‑value markets, and protection of key products. [patentskart](https://patentskart.com/ip-analytics-dynamic-dashboard/)
+5. **Legal risk** – invalidity risk (prior‑art conflicts), pending oppositions, litigation outcomes, and maintenance behavior. [deepip](https://www.deepip.ai/blog/ai-patent-portfolio-management)
+6. **Strategic fit** – alignment with targeted workstreams (e.g., Grid storage strategy) and contribution to portfolio differentiation. [signicent](https://signicent.com/patview-patent-dashboard/)
+
+Composite Strength Score is a weighted sum with configurable weights per client or portfolio. [xray.greyb](https://xray.greyb.com/intellectual-property/patent-scoring-and-rating)
+
+### 6.3 Output indicators per patent
+
+- Strength Score (0–100) – headline metric displayed as number and color band.  
+- Risk Level (Low/Medium/High) – from legal risk subscore.  
+- Confidence score (%) – reflects data completeness and model stability.  
+- Value proxy – qualitative class (Low/Medium/High) or approximate monetary band based on income/market methods. [patentest](https://patentest.com/4-effective-methods-for-patent-evaluation/)
+- Key drivers – list of top positive and negative factors (e.g., “High forward citations from major competitors”, “Narrow claims due to prosecution amendments”). [patsnap](https://www.patsnap.com/resources/blog/articles/patent-quality-assessment-guide/)
+- Recommended action – keep/strengthen, license, prune, or monitor.  
+
+***
+
+## 7. Detailed feature requirements by module
+
+### 7.1 Command Center (main dashboard)
+
+- Show **Global filings sprint** area with cards: Active patents, Risk alerts, Value at stake, Confidence score.  
+- Show **Active workstreams** list with progress bars and stage labels.  
+- Show **Coverage map** and **Recent intelligence** panels on the right.  
+- Allow drill‑down from each component (card click opens filtered views).  
+
+### 7.2 Patent Vault
+
+- List view with sortable columns: Patent number, title, jurisdiction, assignee, Strength Score, Risk Level, Workstream, Last updated.  
+- Search by patent number or keyword; filter by score range, technology, jurisdiction, legal status.  
+- Bulk actions: assign to workstream, trigger re‑evaluation, export list (CSV).  
+
+### 7.3 Patent detail view
+
+When user clicks a specific patent:
+
+- Summary header: Strength Score, Risk Level, Confidence, Workstream, Value proxy.  
+- Tabs:  
+  - Overview (drivers, recommended action, timeline).  
+  - Claims & citations (metrics, network visual, list of key prior art). [sciencedirect](https://www.sciencedirect.com/science/article/pii/S1751157723000317)
+  - Family & coverage (jurisdictions, family tree, expiry dates). [deepip](https://www.deepip.ai/products/patent-portfolio-intelligence)
+  - Legal events (office actions, oppositions, litigation).  
+
+### 7.4 Risk Signals
+
+- Filters for risk type (invalidity, FTO, litigation, maintenance).  
+- Table of patents sorted by risk severity.  
+- Visual summary: bar or donut showing proportion of high‑risk patents per workstream.  
+
+### 7.5 Research Pulse
+
+- Trend charts: filings over time by technology / assignee; citation velocity; grant rates. [signicent](https://signicent.com/patent-dashboard/)
+- White‑space explorer: highlight technology classes with high external activity but low internal coverage.  
+
+### 7.6 Client Spaces
+
+- Workspace selection dropdown.  
+- Each space has its own dashboards, patents, workstreams, and configuration (weights, thresholds).  
+- Access controls (basic in v1): invite by email, viewer/editor roles.  
+
+***
+
+## 8. Data and integrations
+
+- Integrate with at least one global patent data provider offering APIs for bibliographic data, citations, family, and legal status. [clarivate](https://clarivate.com/intellectual-property/derwent/patent-analytics/)
+- Optional integration with litigation/analytics providers for lawsuits, oppositions, and licensing events. [xlscout](https://xlscout.ai/assessing-patent-strength-with-ai-patent-invalidity-search/)
+- Store normalized patent records and computed scores in your own database, with nightly refresh jobs for changes.  
+
+***
+
+## 9. Non‑functional requirements
+
+- Web app responsive for desktop and large tablets, optimized for dashboard usage.  
+- Latency: initial patent evaluation within 10–20 seconds; subsequent loads cached.  
+- Security: per‑client data isolation, encryption at rest and in transit, audit logs for access to Client Spaces.  
+- Explainability: every Strength Score must have an “Explain score” breakdown showing subscores and underlying data, to avoid “black box” perception. [deepip](https://www.deepip.ai/blog/ai-patent-portfolio-management)
+
+***
+
+## 10. Release scope (MVP vs later)
+
+### MVP
+
+- Single‑patent input and evaluation flow.  
+- Command Center with: Global filings sprint metrics, Active workstreams, Coverage map snapshot (non‑interactive), Recent intelligence list.  
+- Patent Vault and basic Patent detail view.  
+- Single tenant (no Client Spaces roles beyond simple workspace ID).  
+
+### Post‑MVP
+
+- Interactive heatmaps and advanced analytics in Coverage map.  
+- Multi‑tenant Client Spaces with granular permissions.  
+- Advanced financial valuation models and licensing opportunity detection. [cimphony](https://www.cimphony.ai/insights/what-are-the-10-ai-tools-to-streamline-ip-portfolio-management)
+
+***
+
+If you want, I can next turn this into a more **engineering‑oriented spec** for you (API design, DB schema for patents/workstreams/scores, and a React component breakdown matching this layout).
