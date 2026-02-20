@@ -1,6 +1,25 @@
 import React, { useState } from 'react';
+import {
+  DCFEvaluation,
+  RNPVEvaluation,
+  RealOptionsEvaluation,
+  CostMarketEvaluation,
+  QualityScoreEvaluation,
+} from './EvaluationTabs';
 
 const PatentDetail = ({ selectedPatent, setView, setDetailTab, detailTab }) => {
+  const tabs = [
+    { id: 'overview', label: 'Overview' },
+    { id: 'claims', label: 'Claims & citations' },
+    { id: 'family', label: 'Family & coverage' },
+    { id: 'legal', label: 'Legal events' },
+    { id: 'dcf', label: 'DCF/Income' },
+    { id: 'rnpv', label: 'rNPV' },
+    { id: 'options', label: 'Real Options' },
+    { id: 'cost-market', label: 'Cost/Market' },
+    { id: 'quality', label: 'Quality Score' },
+  ];
+
   return (
     <section className="intro-fade intro-delay-2">
       <button
@@ -44,23 +63,17 @@ const PatentDetail = ({ selectedPatent, setView, setDetailTab, detailTab }) => {
         </div>
 
         <div className="mt-6 flex flex-wrap gap-3">
-          {['overview', 'claims', 'family', 'legal'].map((tab) => (
+          {tabs.map((tab) => (
             <button
-              key={tab}
-              onClick={() => setDetailTab(tab)}
+              key={tab.id}
+              onClick={() => setDetailTab(tab.id)}
               className={`rounded-full px-4 py-2 text-xs font-semibold ${
-                detailTab === tab
+                detailTab === tab.id
                   ? 'bg-amber-400 text-black'
                   : 'border border-amber-200/30 text-amber-100'
               }`}
             >
-              {tab === 'overview'
-                ? 'Overview'
-                : tab === 'claims'
-                  ? 'Claims & citations'
-                  : tab === 'family'
-                    ? 'Family & coverage'
-                    : 'Legal events'}
+              {tab.label}
             </button>
           ))}
         </div>
@@ -143,6 +156,37 @@ const PatentDetail = ({ selectedPatent, setView, setDetailTab, detailTab }) => {
             </div>
           )}
         </div>
+
+        {/* New Evaluation Method Tabs */}
+        {detailTab === 'dcf' && (
+          <div className="mt-6">
+            <DCFEvaluation />
+          </div>
+        )}
+
+        {detailTab === 'rnpv' && (
+          <div className="mt-6">
+            <RNPVEvaluation />
+          </div>
+        )}
+
+        {detailTab === 'options' && (
+          <div className="mt-6">
+            <RealOptionsEvaluation />
+          </div>
+        )}
+
+        {detailTab === 'cost-market' && (
+          <div className="mt-6">
+            <CostMarketEvaluation />
+          </div>
+        )}
+
+        {detailTab === 'quality' && (
+          <div className="mt-6">
+            <QualityScoreEvaluation selectedPatent={selectedPatent} />
+          </div>
+        )}
       </div>
     </section>
   );
